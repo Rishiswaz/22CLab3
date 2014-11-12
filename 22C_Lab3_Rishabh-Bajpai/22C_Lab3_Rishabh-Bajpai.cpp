@@ -3,7 +3,7 @@
 
 #include "stdafx.h"
 #include "person.h"
-
+#include "BST.h"
 int _tmain(int argc, _TCHAR* argv[])
 {
 	return 0;
