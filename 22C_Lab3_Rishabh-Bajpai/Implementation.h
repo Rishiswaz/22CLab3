@@ -49,10 +49,9 @@ void runInput(std::string inputFileName, std::vector<Person>& people)
 	myfile.close();
 }
 
-
 void buildTree(std::vector<Person> people, BST& tree)
 {
-	int j = people.size;
+	int j = people.size();
 	if (j == 0)
 	{
 		std::cout << "Your list of people is empty" << std::endl

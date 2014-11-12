@@ -6,15 +6,16 @@
 #include<queue>
 
 
-typedef int valuetype;
+typedef Person valuetype;
 class Node{
+
 public:
 	Node();
 	~Node();
 	valuetype data;
 	Node* left;
 	Node* right;
-	
+
 	Node(valuetype);
 };
 //OK
@@ -51,7 +52,6 @@ Node::Node(valuetype val)
 
 Node::~Node()
 {
-
 }
 
 //default constructor
@@ -60,10 +60,10 @@ BST::BST(){
 }
 BST::~BST()
 {
-
 }
 //insert a node with a value in tree
-void BST::insert(valuetype val){
+void BST::insert(valuetype val)
+{
 	if (root == NULL)
 		root = new Node(val);
 	else{
@@ -74,21 +74,22 @@ void BST::insert(valuetype val){
 			Node* parent = root;
 			if (p != root)
 				parent = findparentforNode(val);
-			if (val>parent->data) parent->right = new Node(val);
+			if (val > parent->data) parent->right = new Node(val);
 			else parent->left = new Node(val);
 		}
 		//cout<<"fine2";
 	}
 }
 //remove a node of a given value
-void BST::remove(valuetype val){
+void BST::remove(valuetype val)
+{
 	Node* p = findNodebyvalue(val);
 	if (p != 0){
 		//if both of children of the node are null(leaf node)
 		if (p->left == NULL&&p->right == NULL){
 			if (p != root){
 				Node* parent = findparentforNode(val);
-				if (val<parent->data) parent->left = NULL;
+				if (val < parent->data) parent->left = NULL;
 				else parent->right = NULL;
 			}
 			else root = NULL;
@@ -98,7 +99,7 @@ void BST::remove(valuetype val){
 		else if (p->left != NULL&&p->right == NULL){
 			if (p != root){
 				Node* parent = findparentforNode(val);
-				if (val<parent->data) parent->left = p->left;
+				if (val < parent->data) parent->left = p->left;
 				else parent->right = p->left;
 			}
 			else root = NULL;
@@ -108,7 +109,7 @@ void BST::remove(valuetype val){
 		else if (p->left == NULL&&p->right != NULL){
 			if (p != root){
 				Node* parent = findparentforNode(val);
-				if (val<parent->data) parent->left = p->right;
+				if (val < parent->data) parent->left = p->right;
 				else parent->right = p->right;
 			}
 			else root = NULL;
@@ -125,43 +126,48 @@ void BST::remove(valuetype val){
 	}
 }
 //finds a node with a given value key
-Node* BST::findNodebyvalue(valuetype key){
+Node* BST::findNodebyvalue(valuetype key)
+{
 	Node* p = root;
 	while ((p != NULL) && (p->data != key)){
-		if (key<p->data)p = p->left;
+		if (key < p->data)p = p->left;
 		else p = p->right;
 	}
 	return p;
 }
 //finds the parent of a node with a given value key
-Node* BST::findparentforNode(valuetype key){
+Node* BST::findparentforNode(valuetype key)
+{
 	Node* p = root;
 	Node* q = 0;
 	while ((p != NULL) && (p->data != key)){
 		q = p;
-		if (key<p->data)p = p->left;
+		if (key < p->data)p = p->left;
 		else p = p->right;
 	}
 	return q;
 }
 //finds the most right of a given node "p"
 //the immediate succesor of "p" in inorder representation
-Node* BST::findrightnode(Node* p){
+Node* BST::findrightnode(Node* p)
+{
 	Node* righty = p;
 	while (righty->right != NULL)
 		righty = righty->right;
 	return righty;
 }
 //inorder
-void BST::inorder(Node* p){
+void BST::inorder(Node* p)
+{
 	if (p != NULL){
 		inorder(p->left);
 		std::cout << p->data << " ";
 		inorder(p->right);
 	}
 }
-//postorder
-void BST::preorder(Node* p){
+//preorder
+void BST::preorder(Node* p)
+{
 	if (p != NULL){
 		std::cout << p->data << " ";
 		preorder(p->left);
@@ -169,14 +175,16 @@ void BST::preorder(Node* p){
 	}
 }
 //postorder
-void BST::postorder(Node* p){
+void BST::postorder(Node* p)
+{
 	if (p != NULL){
 		postorder(p->left);
 		postorder(p->right);
 		std::cout << p->data << " ";
 	}
 }
-void BST::traverse(){
+void BST::traverse()
+{
 	std::cout << "Preorder: ";
 	preorder(root);
 	std::cout << std::endl << "Inorder: ";
@@ -186,7 +194,8 @@ void BST::traverse(){
 	std::cout << std::endl;
 }
 //to print tree hightwise i.e. all nodes at h1, then all nodes at h2, then at h3
-void BST::custom_print(){
+void BST::custom_print()
+{
 	//Node* temp;
 	if (root == NULL)
 		return;
