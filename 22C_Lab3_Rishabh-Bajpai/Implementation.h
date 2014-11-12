@@ -10,19 +10,21 @@
 
 void runInput(std::string inputFileName, std::vector<Person>& people);
 void buildTree(std::vector<Person> people, BST& tree);
+void output(std::vector<Person> people);
+std::string getFileName();
 
 
 void runInput(std::string inputFileName, std::vector<Person>& people)
 {
 	int inDay, inMonth, inYear,i=0;
 	Birthday inBday;
+	Person dummy;
 	char separator;
 	std::string inName;
 	std::ifstream myfile;
 	myfile.open(inputFileName);
-	while (myfile.good())
+	while (!myfile.eof())
 	{
-		
 		myfile >> inDay;
 
 		myfile >> separator;
@@ -41,7 +43,8 @@ void runInput(std::string inputFileName, std::vector<Person>& people)
 		myfile.ignore(10000, '\n');
 		inBday.input(inDay,inMonth,inYear);
 		// Process or store values.
-		people[i].insertValues(inBday, inName);
+		dummy.insertValues(inBday, inName);
+		people.push_back(dummy);
 		people[i].key = i+1;
 		i += 1;
 	}
@@ -61,4 +64,27 @@ void buildTree(std::vector<Person> people, BST& tree)
 	{
 		tree.insert(people[i]);
 	}
+}
+
+void output(std::vector<Person> people)
+{
+	std::cout << "Printing tree sorted by name to: post-order_output.txt" << std::endl;
+	for (int i = 0; i < people.size(); i++)
+	{
+		people[i].output_PO();
+	}
+	std::cout << "Printing tree sorted by date of birth to: breadth-first_output.txt" << std::endl;
+	for (int i = 0; i < people.size(); i++)
+	{
+		people[i].output_BF();
+	}
+}
+
+std::string getFileName()
+{
+	std::string filename;
+	std::cout << "Please enter the file name and extension of your input file" << std::endl
+		<< "Supported file formats: .csv and .txt; .txt files must have values seperated by commas" << std::endl;
+	std::getline(std::cin, filename, '\n');
+	return filename;
 }

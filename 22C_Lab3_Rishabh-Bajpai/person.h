@@ -18,7 +18,7 @@ public:
 
 	bool Birthday::operator == (const Birthday& rhs)
 	{
-		bool finalcheck= false, dayCheck, monthCheck, yearCheck;
+		bool finalcheck= false, dayCheck=false, monthCheck=false, yearCheck=false;
 
 		if (day == rhs.day)
 		{
