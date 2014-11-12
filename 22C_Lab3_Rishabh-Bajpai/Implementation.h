@@ -39,11 +39,10 @@ void runInput(std::string inputFileName, std::vector<Person>& people)
 
 		// Ignore the newline, as it is still in the buffer.
 		myfile.ignore(10000, '\n');
-		inBday.day = inDay;
-		inBday.month = inMonth;
-		inBday.year = inYear;
+		inBday.input(inDay,inMonth,inYear);
 		// Process or store values.
 		people[i].insertValues(inBday, inName);
+		people[i].key = i+1;
 		i += 1;
 	}
 	myfile.close();
