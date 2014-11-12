@@ -34,20 +34,20 @@ public:
 	valuetype retrieve();
 	void custom_print();
 };
-//constructor1
+//default constructor
 Node::Node(){
 	left = right = NULL;
 }
-//constructor2
+//constructor
 Node::Node(valuetype val){
 	data = val;
 	left = right = NULL;
 }
-//constructor
+//default constructor
 BST::BST(){
 	root = current = NULL;
 }
-//insert a node with value val in tree
+//insert a node with a value in tree
 void BST::insert(valuetype val){
 	if (root == NULL)
 		root = new Node(val);
@@ -65,11 +65,11 @@ void BST::insert(valuetype val){
 		//cout<<"fine2";
 	}
 }
-//remove the node if value is val
+//remove a node of a given value
 void BST::remove(valuetype val){
 	Node* p = findNodebyvalue(val);
 	if (p != 0){
-		//if both of child of node are null(leaf node)
+		//if both of children of the node are null(leaf node)
 		if (p->left == NULL&&p->right == NULL){
 			if (p != root){
 				Node* parent = findparentforNode(val);
@@ -79,7 +79,7 @@ void BST::remove(valuetype val){
 			else root = NULL;
 			delete (p);
 		}
-		//if only left child is not null
+		//if the left child is not null
 		else if (p->left != NULL&&p->right == NULL){
 			if (p != root){
 				Node* parent = findparentforNode(val);
@@ -89,7 +89,7 @@ void BST::remove(valuetype val){
 			else root = NULL;
 			delete (p);
 		}
-		//if only right child is not null
+		//if the right child is not null
 		else if (p->left == NULL&&p->right != NULL){
 			if (p != root){
 				Node* parent = findparentforNode(val);
@@ -99,7 +99,7 @@ void BST::remove(valuetype val){
 			else root = NULL;
 			delete (p);
 		}
-		//if both child are not null
+		//if both children are not null
 		else{
 			Node* righty = findrightnode(p->left);
 			Node* parent = findparentforNode(righty->data);
@@ -109,7 +109,7 @@ void BST::remove(valuetype val){
 		}
 	}
 }
-//fins node with a value key
+//finds a node with a given value key
 Node* BST::findNodebyvalue(valuetype key){
 	Node* p = root;
 	while ((p != NULL) && (p->data != key)){
@@ -118,7 +118,7 @@ Node* BST::findNodebyvalue(valuetype key){
 	}
 	return p;
 }
-//find parent of a node with value key
+//finds the parent of a node with a given value key
 Node* BST::findparentforNode(valuetype key){
 	Node* p = root;
 	Node* q = 0;
@@ -129,7 +129,8 @@ Node* BST::findparentforNode(valuetype key){
 	}
 	return q;
 }
-//finds the most right of a node p(means immediate succesor of p in inorder representation)
+//finds the most right of a given node "p"
+//the immediate succesor of "p" in inorder representation
 Node* BST::findrightnode(Node* p){
 	Node* righty = p;
 	while (righty->right != NULL)
