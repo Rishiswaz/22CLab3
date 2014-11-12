@@ -15,12 +15,14 @@ class Person
 public:
 	Person();
 	~Person();
-	void instertValues(Birthday bdayIn, std::string nameIn);
+	void insertValues(Birthday bdayIn, std::string nameIn);
 	void output_PO();
 	void output_BF();
+	int key;
 private:
 	Birthday dOB; //date of birth
 	std::string name; //name of individual
+	
 };
 
 Person::Person()
@@ -47,7 +49,7 @@ void Person::output_BF()
 	myfile.close();
 }
 
-void Person::instertValues(Birthday bdayIn, std::string nameIn)
+void Person::insertValues(Birthday bdayIn, std::string nameIn)
 {
 	dOB = bdayIn;
 	name = nameIn;

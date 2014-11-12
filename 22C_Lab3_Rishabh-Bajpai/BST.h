@@ -9,10 +9,12 @@
 typedef int valuetype;
 class Node{
 public:
+	Node();
+	~Node();
 	valuetype data;
 	Node* left;
 	Node* right;
-	Node();
+	
 	Node(valuetype);
 };
 //OK
@@ -28,6 +30,7 @@ public:
 	Node* current;
 public:
 	BST();
+	~BST();
 	void insert(valuetype);
 	void remove(valuetype);
 	void traverse();
@@ -35,17 +38,29 @@ public:
 	void custom_print();
 };
 //default constructor
-Node::Node(){
+Node::Node()
+{
 	left = right = NULL;
 }
 //constructor
-Node::Node(valuetype val){
+Node::Node(valuetype val)
+{
 	data = val;
 	left = right = NULL;
 }
+
+Node::~Node()
+{
+
+}
+
 //default constructor
 BST::BST(){
 	root = current = NULL;
+}
+BST::~BST()
+{
+
 }
 //insert a node with a value in tree
 void BST::insert(valuetype val){
