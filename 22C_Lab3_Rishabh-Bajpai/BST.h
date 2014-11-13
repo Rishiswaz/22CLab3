@@ -23,9 +23,7 @@ class BST{
 	Node* findNodebyvalue(valuetype);
 	Node* findparentforNode(valuetype);
 	Node* findrightnode(Node*);
-	void inorder(Node*);
-	void postorder(Node*);
-	void preorder(Node*);
+	
 public:
 	Node* root;
 	Node* current;
@@ -37,6 +35,9 @@ public:
 	void traverse();
 	valuetype retrieve();
 	void custom_print();
+	void inorder(Node*);
+	void postorder(Node*);
+	void preorder(Node*);
 };
 //default constructor
 Node::Node()

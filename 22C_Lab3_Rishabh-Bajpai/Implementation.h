@@ -59,9 +59,9 @@ void buildTree(std::vector<Person> people, BST& tree)
 
 void output(std::vector<Person> people, BST tree)
 {
-	
+	Person dummy;
 	std::cout << "Printing tree sorted by name to: post-order_output.txt" << std::endl;
-	//sort the tree by name (ASCII value), post order
+	//sort by name, post order
 	std::ofstream myfile;
 	myfile.open("post-order_output.txt");
 	for (int i = 0; i < people.size(); i++)
