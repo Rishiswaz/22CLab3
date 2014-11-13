@@ -10,6 +10,7 @@ public:
 	Birthday();
 	~Birthday();
 	Birthday(const Birthday& rhs);
+	void outputFunction();
 	friend std::ostream& Birthday::operator << (std::ostream& output, const Birthday& rhs)
 	{
 	output<< rhs.day<< " " << rhs.month<< " " << rhs.year;
@@ -46,6 +47,7 @@ private:
 	
 };
 
+
 Birthday::Birthday()
 {
 }
@@ -68,9 +70,7 @@ public:
 	Person();
 	~Person();
 	void insertValues(Birthday bdayIn, std::string nameIn);
-	void output_PO();
-	void output_BF();
-	
+	void outputBirthday();
 	int key;
 
 	bool Person::operator <  (      Person& rhs);
@@ -95,6 +95,12 @@ Person::Person()
 
 Person::~Person()
 {
+}
+
+void Person::outputBirthday()
+{
+	std::string output;
+	output << dOB;
 }
 
 void Person::insertValues(Birthday bdayIn, std::string nameIn)
