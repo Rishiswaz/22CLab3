@@ -4,14 +4,20 @@
 #include "Implementation.h"
 #include <vector>
 #include <string>
+#include <iostream>
 int _tmain(int argc, _TCHAR* argv[])
 {
 	BST tree;
 	std::vector <Person> vectorOfPeople;
 	std::string filename = getFileName();
 	runInput(filename, vectorOfPeople);
+	system("CLS");
+	for (int i = 0; i < vectorOfPeople.size(); i++)
+	{
+		std::cout << vectorOfPeople[i]<<std::endl;
+	}
 	buildTree(vectorOfPeople, tree);
-	output(vectorOfPeople);
+	output(vectorOfPeople, tree);
 	system("PAUSE");
 	return 0;
 }

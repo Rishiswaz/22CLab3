@@ -78,7 +78,7 @@ public:
 	bool Person::operator >  (		Person& rhs);
 	friend std::ostream& Person::operator << (std::ostream& output, const Person& rhs)
 	{
-		output <<rhs.dOB<<" "<<rhs.name;
+		output << rhs.dOB<<" "<<rhs.name;
 		return output;
 	}
 
@@ -95,21 +95,6 @@ Person::Person()
 
 Person::~Person()
 {
-}
-
-void Person::output_PO()
-{
-	std::ofstream myfile;
-	myfile.open("post-order_output.txt");
-	myfile << name << " " << dOB<<std::endl;
-	myfile.close();
-}
-void Person::output_BF()
-{
-	std::ofstream myfile;
-	myfile.open("breadth-first_output.txt");
-	myfile << name << " " << dOB<<std::endl;
-	myfile.close();
 }
 
 void Person::insertValues(Birthday bdayIn, std::string nameIn)

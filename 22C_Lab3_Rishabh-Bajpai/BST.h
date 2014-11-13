@@ -1,5 +1,5 @@
 #pragma once
-
+#include "person.h"
 #include<iostream>
 #include<conio.h>
 #include<stack>

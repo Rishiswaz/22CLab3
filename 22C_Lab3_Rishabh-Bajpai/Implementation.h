@@ -10,7 +10,7 @@
 
 void runInput(std::string inputFileName, std::vector<Person>& people);
 void buildTree(std::vector<Person> people, BST& tree);
-void output(std::vector<Person> people);
+void output(std::vector<Person> people, BST tree);
 std::string getFileName();
 
 
@@ -46,6 +46,7 @@ void runInput(std::string inputFileName, std::vector<Person>& people)
 		dummy.insertValues(inBday, inName);
 		people.push_back(dummy);
 		people[i].key = i+1;
+		
 		i += 1;
 	}
 	myfile.close();
@@ -59,6 +60,7 @@ void buildTree(std::vector<Person> people, BST& tree)
 		std::cout << "Your list of people is empty" << std::endl
 			<< "Was your input file formatted correctly?" << std::endl
 			<< "Check to make sure it is in 'DD,MM,YYYY' format" << std::endl;
+		system("PAUSE");
 	}
 	for (int i = 0; i < j; i++)
 	{
@@ -66,17 +68,26 @@ void buildTree(std::vector<Person> people, BST& tree)
 	}
 }
 
-void output(std::vector<Person> people)
+void output(std::vector<Person> people, BST tree)
 {
+	
+	//sort the tree by name (ASCII value), post order
 	std::cout << "Printing tree sorted by name to: post-order_output.txt" << std::endl;
 	for (int i = 0; i < people.size(); i++)
 	{
-		people[i].output_PO();
+		std::ofstream myfile;
+		myfile.open("post-order_output.txt");
+		myfile <<people[i]<< '\r\n' << std::endl;
+		myfile.close();
 	}
+	//sort the tree by date of birth, breadth first
 	std::cout << "Printing tree sorted by date of birth to: breadth-first_output.txt" << std::endl;
 	for (int i = 0; i < people.size(); i++)
 	{
-		people[i].output_BF();
+		std::ofstream myfile;
+		myfile.open("breadth-first_output.txt");
+		myfile <<people[i]<< '\r\n' << std::endl;
+		myfile.close();
 	}
 }
 
