@@ -23,24 +23,13 @@ void runInput(std::string inputFileName, std::vector<Person>& people)
 	std::string inName;
 	std::ifstream myfile;
 	myfile.open(inputFileName);
-	while (!myfile.eof())
+	while (myfile >> inDay >> separator >> inMonth >> separator >> inYear >> separator)
 	{
-		myfile >> inDay;
-
-		myfile >> separator;
-
-		myfile >> inMonth;
-
-		myfile >> separator;
-
-		myfile >> inYear;
-
-		myfile >> separator;
-
+		//myfile >> inDay >> separator >> inMonth >> separator >> inYear >> separator;
 		std::getline(myfile, inName, '\n');
-
 		// Ignore the newline, as it is still in the buffer.
-		myfile.ignore(10000, '\n');
+		//myfile.ignore(10000, '\n');
+		
 		inBday.input(inDay,inMonth,inYear);
 		// Process or store values.
 		dummy.insertValues(inBday, inName);
@@ -48,7 +37,7 @@ void runInput(std::string inputFileName, std::vector<Person>& people)
 		people[i].key = i+1;
 		
 		i += 1;
-	}
+	} ;
 	myfile.close();
 }
 
@@ -71,24 +60,29 @@ void buildTree(std::vector<Person> people, BST& tree)
 void output(std::vector<Person> people, BST tree)
 {
 	
-	//sort the tree by name (ASCII value), post order
 	std::cout << "Printing tree sorted by name to: post-order_output.txt" << std::endl;
+	//sort the tree by name (ASCII value), post order
+	std::ofstream myfile;
+	myfile.open("post-order_output.txt");
 	for (int i = 0; i < people.size(); i++)
 	{
-		std::ofstream myfile;
-		myfile.open("post-order_output.txt");
-		myfile <<people[i]<< '\r\n' << std::endl;
-		myfile.close();
+		myfile << people[i] << std::endl;
 	}
-	//sort the tree by date of birth, breadth first
+	myfile.close();
+	std::cout << "done" << std::endl<<std::endl;
+	
 	std::cout << "Printing tree sorted by date of birth to: breadth-first_output.txt" << std::endl;
+	//sort the tree by date of birth, breadth first
+	std::ofstream myfile2;
+		myfile2.open("breadth-first_output.txt");
 	for (int i = 0; i < people.size(); i++)
 	{
-		std::ofstream myfile;
-		myfile.open("breadth-first_output.txt");
-		myfile <<people[i]<< '\r\n' << std::endl;
-		myfile.close();
+		
+		myfile2 <<people[i]<< std::endl;
+		
 	}
+	myfile2.close();
+	std::cout << "done" << std::endl;
 }
 
 std::string getFileName()
